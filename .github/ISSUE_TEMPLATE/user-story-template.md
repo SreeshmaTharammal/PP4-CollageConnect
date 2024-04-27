@@ -7,16 +7,17 @@ assignees: ''
 
 ---
 
-As a **role** I can **capability**, so that I can **received benefit**
+As a **role**, I can **capability**, so that I can **received benefit**.
 
 Acceptance Criteria
 ---
--**Given**
+- **Given**
 **When** 
 **Then**
 
 Tasks
 ---
-
+- [ ] Task 1 -
+  
 Epic: 
 ---
