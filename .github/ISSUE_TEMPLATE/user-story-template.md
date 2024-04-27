@@ -7,13 +7,13 @@ assignees: ''
 
 ---
 
-As a ***role* I can **capability** so that I can **received benefit**
+As a **role** I can **capability**, so that I can **received benefit**
 
 Acceptance Criteria
 ---
-Given
-When 
-Then 
+-**Given**
+**When** 
+**Then**
 
 Tasks
 ---
