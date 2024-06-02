@@ -3,6 +3,9 @@ from users.models import Student, Instructor
 from subjects.models import Subject
 
 class Attendance(models.Model):
+    """
+    Model for attendance
+    """
     STATUS_CHOICES = (
         ('present', 'Present'),
         ('absent', 'Absent'),
@@ -12,3 +15,9 @@ class Attendance(models.Model):
     instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE)
     date = models.DateField()
     status = models.CharField(max_length=7, choices=STATUS_CHOICES)
+
+    class Meta:
+        ordering = ['date', 'student']
+
+    def __str__(self):
+        return f"{self.date}: {self.student} - {self.status} for {self.subject}"
