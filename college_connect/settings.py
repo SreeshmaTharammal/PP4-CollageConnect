@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-3utwmdf*-u2b6%c*$idv*-c84sdg9rqn^(1y=e^nwfrg6k0t#o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['8000-sreeshmatha-pp4collegec-ngt5ce5862y.ws-eu114.gitpod.io','.herokuapp.com']
 
@@ -59,10 +59,14 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'college_connect.urls'
 
+#LOGIN_REDIRECT_URL = '/'
+#LOGOUT_REDIRECT_URL = '/users/login/'
+#LOGIN_URL = '/users/login/'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

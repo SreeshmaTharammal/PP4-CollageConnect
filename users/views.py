@@ -1,6 +1,7 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.contrib.auth.views import LoginView
+#from django.urls import reverse_lazy
 
 # Create your views here.
-def user_view(request):
-    return HttpResponse("Hello, World!")
+class UserLogin(LoginView):
+    template_name = 'users/login.html'
+    redirect_authenticated_user = True
