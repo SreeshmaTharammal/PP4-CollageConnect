@@ -1,0 +1,10 @@
+/* Custom CSS for positioning footer */
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: green; /* Adjust background color as needed */
+    padding: 20px 0; /* Adjust padding as needed */
+    text-align: center; /* Center-align the content */
+}

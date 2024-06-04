@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'courses',
     'subjects',
     'attendance',
+    'home',
 ]
 
 MIDDLEWARE = [
@@ -59,14 +60,13 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'college_connect.urls'
 
-#LOGIN_REDIRECT_URL = '/'
-#LOGOUT_REDIRECT_URL = '/users/login/'
-#LOGIN_URL = '/users/login/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [TEMPLATES_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Home - College{% endblock %}
+{% block content %}
+
+<div class="jumbotron mt-4">
+    <h1 class="display-4">Welcome to Our College</h1>
+    <p class="lead">Here are the courses available:</p>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        Available Courses
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered" id="courses-table">
+            <thead class="thead-light">
+                <tr>
+                    <th>Course ID</th>
+                    <th>Course Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Courses will be populated by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Add Login Button 
+<div class="mt-4">
+    <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+</div>-->
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/home.js' %}"></script>
+{% endblock %}
