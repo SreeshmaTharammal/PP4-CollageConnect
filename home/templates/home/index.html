@@ -1,6 +1,15 @@
 {% extends "base.html" %}
+
 {% load static %}
+
 {% block title %}Home - College{% endblock %}
+
+{% block login_button %}
+    <li class="nav-item">
+        <a id="login-button" href="{% url 'login' %}" class="btn btn-primary">Login</a>
+    </li>
+{% endblock %}
+
 {% block content %}
 
 <div class="jumbotron mt-4">
@@ -27,10 +36,6 @@
     </div>
 </div>
 
-<!-- Add Login Button 
-<div class="mt-4">
-    <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
-</div>-->
 {% endblock %}
 
 {% block scripts %}
