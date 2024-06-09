@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.views import generic
+from .models import Subject
 
 # Create your views here.
-def subject_view(request):
-    return HttpResponse("Subjects View")
+class SubjectList(generic.ListView):
+    model = Subject

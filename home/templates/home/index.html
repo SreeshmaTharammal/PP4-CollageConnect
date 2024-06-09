@@ -1,14 +1,8 @@
 {% extends "base.html" %}
-
+<!-- Load static content -->
 {% load static %}
 
 {% block title %}Home - College{% endblock %}
-
-{% block login_button %}
-    <li class="nav-item">
-        <a id="login-button" href="{% url 'login' %}" class="btn btn-primary">Login</a>
-    </li>
-{% endblock %}
 
 {% block content %}
 

@@ -8,6 +8,7 @@ class User(AbstractUser):
     is_admin = models.BooleanField(default=False)
     is_student = models.BooleanField(default=False)
     is_instructor = models.BooleanField(default=False)
+    address = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         ordering = ['username']

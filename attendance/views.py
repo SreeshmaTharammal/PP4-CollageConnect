@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.views import generic
+from .models import Attendance
 
 # Create your views here.
-def attendance_view(request):
-    return HttpResponse("Attendance View")
+class AttendanceList(generic.ListView):
+    model = Attendance
