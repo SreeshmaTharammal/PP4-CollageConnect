@@ -19,14 +19,11 @@
             <ul class="navbar-nav ml-auto">
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <form method="post" action="{% url 'account_logout' %}">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-link nav-link" style="display: inline; padding: 0; border: none; background: none;">Logout</button>
-                        </form>
+                        <a class="nav-link btn btn-primary" href="{% url 'account_logout' %}">Logout</a>
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+                        <a class="nav-link btn btn-primary" href="{% url 'account_login' %}">Login</a>
                     </li>
                 {% endif %}
             </ul>

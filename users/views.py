@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 
-@login_required(login_url='/user/login/')
+#@login_required(login_url='/user/login/')
 def ShowUser(request):
     
     if request.user.is_authenticated:
