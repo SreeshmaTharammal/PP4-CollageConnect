@@ -102,6 +102,8 @@ ACCOUNT_LOGOUT_ON_GET = True
 
 WSGI_APPLICATION = 'college_connect.wsgi.application'
 
+ACCOUNT_FORMS = {'signup': 'users.forms.GuestSignupForm'}
+
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
