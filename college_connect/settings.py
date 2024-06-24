@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'subjects',
     'attendance',
     'home',
+    'django_countries',
 ]
 
 MIDDLEWARE = [
