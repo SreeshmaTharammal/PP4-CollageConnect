@@ -27,9 +27,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-3utwmdf*-u2b6%c*$idv*-c84sdg9rqn^(1y=e^nwfrg6k0t#o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['8000-sreeshmatha-pp4collegec-li9fl1ap0in.ws-eu114.gitpod.io','.herokuapp.com']
+ALLOWED_HOSTS = ['8000-sreeshmatha-pp4collegec-ngt5ce5862y.ws-eu114.gitpod.io','.herokuapp.com']
 
 AUTH_USER_MODEL = "users.User"
 
@@ -101,8 +101,6 @@ ACCOUNT_LOGOUT_ON_GET = True
 
 
 WSGI_APPLICATION = 'college_connect.wsgi.application'
-
-ACCOUNT_FORMS = {'signup': 'users.forms.GuestSignupForm'}
 
 
 # Database

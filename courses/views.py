@@ -1,7 +1,5 @@
-from django.shortcuts import render
-from django.views import generic
-from .models import Course
+from django.db import models
 
-# Create your views here.
-class CourseList(generic.ListView):
-    model = Course
+class Course(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
