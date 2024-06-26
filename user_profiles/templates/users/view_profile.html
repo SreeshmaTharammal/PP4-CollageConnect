@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Profile</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h2>Profile</h2>
+        <p><strong>Username:</strong> {{ profile.user.username }}</p>
+        <p><strong>Email:</strong> {{ profile.user.email }}</p>
+        <p><strong>Address:</strong> {{ profile.address }}</p>
+        <p><strong>Phone Number:</strong> {{ profile.phone_number }}</p>
+        <p><strong>Emergency Contact Number:</strong> {{ profile.emergency_contact_number }}</p>
+        <p><strong>Nationality:</strong> {{ profile.get_nationality_display }}</p>
+        <p><strong>Is Student:</strong> {{ profile.is_student }}</p>
+        <p><strong>Is Instructor:</strong> {{ profile.is_instructor }}</p>
+        <p><strong>Is Admin:</strong> {{ profile.is_admin }}</p>
+        <p><strong>Is Guest:</strong> {{ profile.is_guest }}</p>
+        <a class="btn btn-primary" href="{% url 'edit_profile' %}">Edit Profile</a>
+    </div>
+</body>
+</html>

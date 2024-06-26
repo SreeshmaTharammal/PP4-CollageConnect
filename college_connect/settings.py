@@ -31,7 +31,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['8000-sreeshmatha-pp4collegec-ngt5ce5862y.ws-eu114.gitpod.io','.herokuapp.com']
 
-AUTH_USER_MODEL = "users.User"
+#AUTH_USER_MODEL = 'users.User'
 
 # Application definition
 
@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users',
+    'user_profiles',
     "allauth",
     "allauth.account", 
     'courses',
@@ -91,8 +91,8 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID=1
 
-LOGIN_URL = '/users/login/'
-LOGIN_REDIRECT_URL = '/users/test'
+#LOGIN_URL = '/users/login/'
+#LOGIN_REDIRECT_URL = '/users/test'
 LOGOUT_REDIRECT_URL = '/'
 ACCOUNT_LOGOUT_ON_GET = True 
 #ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
