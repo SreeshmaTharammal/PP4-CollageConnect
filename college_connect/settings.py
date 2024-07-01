@@ -31,7 +31,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['8000-sreeshmatha-pp4collegec-ngt5ce5862y.ws-eu114.gitpod.io','.herokuapp.com']
 
-#AUTH_USER_MODEL = 'users.User'
+#AUTH_USER_MODEL = 'user_profiles.UserProfile'
 
 # Application definition
 
@@ -91,7 +91,7 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID=1
 
-#LOGIN_URL = '/users/login/'
+#LOGIN_REDIRECT_URL = '/users_profiles/profile/'
 #LOGIN_REDIRECT_URL = '/users/test'
 LOGOUT_REDIRECT_URL = '/'
 ACCOUNT_LOGOUT_ON_GET = True 
