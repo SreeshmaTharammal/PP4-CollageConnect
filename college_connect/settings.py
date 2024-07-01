@@ -71,7 +71,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATES_DIR],
+        'DIRS': [TEMPLATES_DIR, os.path.join(BASE_DIR, 'user_profiles', 'templates', 'user_profiles')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -91,10 +91,9 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID=1
 
-#LOGIN_REDIRECT_URL = '/users_profiles/profile/'
-#LOGIN_REDIRECT_URL = '/users/test'
+LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-ACCOUNT_LOGOUT_ON_GET = True 
+#ACCOUNT_LOGOUT_ON_GET = True 
 #ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
 #ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 #ACCOUNT_EMAIL_REQUIRED = True
