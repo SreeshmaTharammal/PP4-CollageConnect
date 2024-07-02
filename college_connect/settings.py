@@ -30,6 +30,7 @@ SECRET_KEY = 'django-insecure-3utwmdf*-u2b6%c*$idv*-c84sdg9rqn^(1y=e^nwfrg6k0t#o
 DEBUG = True
 
 ALLOWED_HOSTS = ['8000-sreeshmatha-pp4collegec-ngt5ce5862y.ws-eu114.gitpod.io','.herokuapp.com']
+AUTH_PROFILE_MODULE = 'user_profile.UserProfile'
 
 #AUTH_USER_MODEL = 'user_profiles.UserProfile'
 
@@ -61,6 +62,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
+    'user_profiles.middleware.EnsureUserProfileMiddleware'
 ]
 
 ROOT_URLCONF = 'college_connect.urls'
@@ -71,7 +73,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATES_DIR, os.path.join(BASE_DIR, 'user_profiles', 'templates', 'user_profiles')],
+        'DIRS': [TEMPLATES_DIR, os.path.join(BASE_DIR, 'user_profiles', 'templates', 'user_profiles'), os.path.join(BASE_DIR, 'courses', 'templates', 'courses')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -91,7 +93,7 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID=1
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/user_profiles/dashboard/'
 LOGOUT_REDIRECT_URL = '/'
 #ACCOUNT_LOGOUT_ON_GET = True 
 #ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'

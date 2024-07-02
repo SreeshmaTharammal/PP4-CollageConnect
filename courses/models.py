@@ -1,16 +1,21 @@
 
+from django.contrib.auth.models import User
 from django.db import models
-from user_profiles.models import UserProfile 
 
 class Course(models.Model):
     name = models.CharField(max_length=100)
-    description = models.TextField(blank=True)
-    instructor = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='courses')
-    start_date = models.DateField()
-    end_date = models.DateField()
-    capacity = models.IntegerField(default=20)
+    description = models.TextField()
 
     def __str__(self):
         return self.name
+
+class Enrollment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    approved = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.course.name}"
+
 
 

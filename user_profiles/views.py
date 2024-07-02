@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import UserForm, UserProfileForm
 from .models import UserProfile
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
 
 def register(request):
     if request.method == 'POST':
@@ -30,36 +31,86 @@ def profile(request):
 
 def custom_login(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+        username = request.POST['username']
+        password = request.POST['password']
         user = authenticate(request, username=username, password=password)
-
         if user is not None:
             login(request, user)
-            if user.is_superuser:
-                return redirect('admin_dashboard')
-            else:
-                return redirect('user_dashboard')
+            return redirect('dashboard')
         else:
-            # Handle invalid login credentials
-            return render(request, 'login.html', {'error_message': 'Invalid credentials'})
+            return render(request, 'user_profile/login.html', {'error': 'Invalid username or password'})
+    return render(request, 'user_profile/login.html')
 
-    return render(request, 'login.html')
+def custom_logout(request):
+    logout(request)
+    return redirect('home')
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            if User.objects.filter(username=username).exists():
+                form.add_error('username', 'A user with that username already exists.')
+            else:
+                user = User.objects.create_user(username=username, password=password)
+                UserProfile.objects.create(
+                    user=user,
+                    address=form.cleaned_data['address'],
+                    phone_number=form.cleaned_data['phone_number'],
+                    emergency_contact_number=form.cleaned_data['emergency_contact_number'],
+                    nationality=form.cleaned_data['nationality'],
+                    is_guest=True
+                )
+                login(request, user)
+                return redirect('dashboard')
+    else:
+        form = SignUpForm()
+    return render(request, 'user_profile/signup.html', {'form': form})
 
 @login_required
-def user_dashboard(request):
-    context = {
-        'title': 'User Dashboard',
-        'message': 'Welcome to your Dashboard!'
-    }
-    return render(request, 'user_dashboard.html', context)
+def dashboard(request):
+    print("Debug: dashboard")
+    try:
+        user_profile = request.user.userprofile
+    except ObjectDoesNotExist:
+        return redirect('create_user_profile')
+    if request.user.is_superuser:
+        return redirect('admin_dashboard')
+    elif user_profile.is_student:
+        return redirect('student_dashboard')
+    elif user_profile.is_instructor:
+        return redirect('instructor_dashboard')
+    elif user_profile.is_guest:
+        return redirect('guest_dashboard')
+    else:
+        return redirect('home')
 
 @login_required
 def admin_dashboard(request):
-    context = {
-        'title': 'Admin Dashboard',
-        'message': 'Welcome to the Admin Dashboard!'
-    }
-    return render(request, 'admin_dashboard.html', context)
+    user_profile = request.user.userprofile
+    if not user_profile.is_admin:
+        return redirect('dashboard')  # Redirect non-admins to their appropriate dashboard
 
+    enrollments = Enrollment.objects.filter(is_approved=False)
+    if request.method == 'POST':
+        enrollment_id = request.POST.get('enrollment_id')
+        enrollment = Enrollment.objects.get(id=enrollment_id)
+        enrollment.is_approved = True
+        enrollment.save()
+        user_profile = enrollment.user_profile
+        user_profile.is_guest = False
+        user_profile.is_student = True
+        user_profile.save()
+        return redirect('admin_dashboard')
 
+    return render(request, 'courses/admin_dashboard.html', {'enrollments': enrollments})
+
+@login_required
+def student_dashboard(request):
+    return render(request, 'user_profile/student_dashboard.html')
+
+@login_required
+def instructor_dashboard(request):
+    return render(request, 'user_profile/instructor_dashboard.html')
