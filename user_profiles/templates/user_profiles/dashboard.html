@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Dashboard</h2>
+    <p>Welcome, {{ user.username }}!</p>
+    {% if user.userprofile.is_admin %}
+        <a href="{% url 'admin_dashboard' %}" class="btn btn-primary">Admin Dashboard</a>
+    {% elif user.userprofile.is_student %}
+        <a href="{% url 'student_dashboard' %}" class="btn btn-primary">Student Dashboard</a>
+    {% elif user.userprofile.is_instructor %}
+        <a href="{% url 'instructor_dashboard' %}" class="btn btn-primary">Instructor Dashboard</a>
+    {% elif user.userprofile.is_guest %}
+        <a href="{% url 'guest_dashboard' %}" class="btn btn-primary">Guest Dashboard</a>
+    {% endif %}
+</div>
+{% endblock %}
