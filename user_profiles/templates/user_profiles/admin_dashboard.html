@@ -1,13 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
-</head>
-<body>
-    <h1>{{ title }}</h1>
-    <p>{{ message }}</p>
-</body>
-</html>
+{% extends "base.html" %}
 
+{% block content %}
+<div class="container mt-5">
+    <h2>Admin Dashboard</h2>
+    <h3>Pending Enrollments</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Course</th>
+                <th>Approve</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for enrollment in enrollments %}
+                <tr>
+                    <td>{{ enrollment.user.username }}</td>
+                    <td>{{ enrollment.course.name }}</td>
+                    <td>
+                        <form method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="enrollment_id" value="{{ enrollment.id }}">
+                            <button type="submit" class="btn btn-success">Approve</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
